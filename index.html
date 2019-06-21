@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta content="text/css" http-equiv="Content-Style-Type" />
+<meta content="text/javascript" http-equiv="Content-Script-Type" />
+<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta http-equiv="expires" content="86400">
+<meta http-equiv="Content-Language" content="ja">
+<meta name="Robots" content="noodp">
+<meta name="Author" content="Marcatucube">
+<meta name="copyright" content="" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.js"></script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.12/jquery.bxslider.css">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body id="page_top">    
+    <aside class="bx_slider-wrapper">
+        <div class="bx_slider">
+            <div class="slider-1 slide_contents">
+                <figure class="slaider_figre_wapper">
+                    <p>Slider 1</p>
+                </figure>
+            </div>
+            <div class="slider-2 slide_contents">
+                <figure class="slaider_figre_wapper">
+                    <p>Slider 2</p>
+                </figure>
+            </div>
+            <div class="slider-3 slide_contents">
+                <figure class="slaider_figre_wapper">
+                    <p>Slider 3</p>
+                </figure>
+            </div>
+            <div class="slider-4 slide_contents">
+                <figure class="slaider_figre_wapper">
+                    <p>Slider 4</p>
+                </figure>
+            </div>
+            <div class="slider-5 slide_contents">
+                <figure class="slaider_figre_wapper">
+                    <p>Slider 5</p>
+                </figure>
+            </div>
+        </div>
+    </aside>
+</body>
+<script>
+(function ($) {
+    $(window).on("load", function () {
+        if(window.innerWidth < 840){
+            $('.bx_slider').bxSlider({
+              auto: true,
+              minSlides:1,
+              maxSlides:1,
+              touchEnabled:true
+            }); 
+        }else {
+            var $slider = $('.bx_slider');
+            var activeClass = 'active-slide';
+            $('.bx_slider').bxSlider({
+                auto: true,
+                minSlides:2,
+                maxSlides:2,
+                easing:'ease-in',
+                autoHover:true,
+                onSliderLoad: function() {
+                  $slider.children('div').eq(1).addClass(activeClass);
+                },
+                onSlideAfter: function($slideElement, oldIndex, newIndex) {
+                  $slider.children('div').removeClass(activeClass).eq(newIndex + 1).addClass(activeClass);
+                }
+            }); 
+        }
+    });
+}(jQuery));
+
+</script>
+</html>
